@@ -49,7 +49,7 @@ Route::middleware(['auth.check'])->group(function () {
     Route::get('top', [PostsController::class, 'index'])->name('top');
     Route::get('profile', [ProfileController::class, 'profile']);
     // プロフィール編集のルート新規追加
-    Route::post('profile-update',[ProfileController::class,'update'])->name('profile.update');
+    Route::put('profile-update',[ProfileController::class,'update'])->name('profile.update');
     Route::get('search', [UsersController::class, 'search'])->name('search');
     Route::get('/follow-list', [PostsController::class, 'followlist']);
     Route::get('/follower-list', [PostsController::class, 'followers']);
