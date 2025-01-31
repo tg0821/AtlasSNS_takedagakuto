@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-
+use Illuminate\Cookie\Middleware\EncryptCookies; // これが必要
 class Kernel extends HttpKernel
 {
     /**
@@ -13,15 +13,28 @@ class Kernel extends HttpKernel
      *
      * @var array<int, class-string|string>
      */
-    protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
-        \App\Http\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-    ];
+    // protected $middleware = [
+    //     // \App\Http\Middleware\TrustHosts::class,
+    //     \App\Http\Middleware\TrustProxies::class,
+    //     \Illuminate\Http\Middleware\HandleCors::class,
+    //     \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+    //     \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+    //     \App\Http\Middleware\TrimStrings::class,
+    //     \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+    //     \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    //      \App\Http\Middleware\AuthMiddleware::class,  // 新しく追加したミドルウェア
+    // ];
+protected $middleware = [
+    // \App\Http\Middleware\TrustHosts::class,
+    \App\Http\Middleware\TrustProxies::class,
+    \Illuminate\Http\Middleware\HandleCors::class,
+    \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+    \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+    \App\Http\Middleware\TrimStrings::class,
+    \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+    \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    \App\Http\Middleware\AuthMiddleware::class,  // AuthMiddlewareはEncryptCookiesより後に来る
+];
 
     /**
      * The application's route middleware groups.
@@ -30,7 +43,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            // \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -63,5 +76,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // auth,checkが二つあるので既存のはコメントアウト
+        'auth.check' => \App\Http\Middleware\EnsureAuthenticated::class,
+         'auth.middleware' => \App\Http\Middleware\AuthMiddleware::class,
     ];
 }

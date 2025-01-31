@@ -32,4 +32,62 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * ユーザーのフォロワーを取得するリレーション
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+    }
+
+    /**
+     * ユーザーがフォローしているユーザーを取得するリレーション
+     */
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
+    }
+
+    /**
+     * 特定のユーザーをフォローする
+     */
+    public function follow($user)
+    {
+        if (!$this->isFollowing($user)) {
+            $this->following()->attach($user);
+        }
+    }
+
+    /**
+     * 特定のユーザーのフォローを解除する
+     */
+    public function unfollow($user)
+    {
+        if ($this->isFollowing($user)) {
+            $this->following()->detach($user);
+        }
+    }
+
+    /**
+     * 指定したユーザーをフォローしているか確認する
+     */
+    public function isFollowing($user): bool
+    {
+        return $this->following()->where('followed_id', $user)->exists();
+    }
+
+    /**
+     * 指定したユーザーにフォローされているか確認する
+     */
+    public function isFollowedBy($user): bool
+    {
+        return $this->followers()->where('following_id', $user)->exists();
+    }
+
+    // 投稿を取得するためのリレーション
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -1,19 +1,25 @@
 <x-logout-layout>
-
   <!-- 適切なURLを入力してください -->
-  {!! Form::open(['url' => '〇〇']) !!}
-
+  {!! Form::open(['url' => 'login']) !!}
   <p>AtlasSNSへようこそ</p>
 
-  {{ Form::label('email') }}
+  <!-- 括弧の中の引数３番のものはclass名になっている -->
+   <div class="form-group">
+  {{ Form::label('メールアドレス') }}
+  <br>
   {{ Form::text('email',null,['class' => 'input']) }}
-  {{ Form::label('password') }}
+  </div>
+
+  <div class="form-group">
+  {{ Form::label('パスワード') }}
+  <br>
   {{ Form::password('password',['class' => 'input']) }}
+  </div>
 
   {{ Form::submit('ログイン') }}
 
-  <p><a href="register">新規ユーザーの方はこちら</a></p>
+<!-- <br> -->
+  <p class="register-link"><a href="register">新規ユーザーの方はこちら</a></p>
 
   {!! Form::close() !!}
-
 </x-logout-layout>

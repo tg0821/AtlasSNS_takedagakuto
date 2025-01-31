@@ -1,22 +1,125 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    background: #186AC9;
+}
+
+/* アコーディオンメニューのスタイル */
+/* 基本スタイル */
+#menu-container {
+    position: relative;
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle[aria-expanded="true"] {
+    transform: rotate(180deg);
+    /* 矢印の回転 */
+}
+
+#accordion-menu {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 150px;
+    /* display: none; */
+    z-index: 10;
+}
+
+#accordion-menu li {
+    border-bottom: 1px solid #ccc;
+}
+
+#accordion-menu li:last-child {
+    border-bottom: none;
+}
+
+#accordion-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#accordion-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* 表示/非表示切り替え */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
 
 /* main content */
-#row{
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
     flex: 0 0 80%;
 }
-#side-bar{
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/* 投稿、削除のボタンのCS */
+#bottom {
+    display: contents;
+    height: 50px;
+    width: 50px;
+}
+
+/* ボタン画像の部分 */
+#bottom img {
+    /* display: contents; */
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin-right: 135px;
+    /* 右寄せから10px分左にずらす */
+}
+
+/* 投稿内容入力の部分 */
+.posts-box {
+    border: none;
+    /* 枠線をなくす */
+    outline: none;
+    /* フォーカス時の枠線もなくす */
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 0px;
+    padding-right: 257px;
+    box-sizing: border-box;
+    /* これを追加 */
+    width: 100%;
+    /* 幅を100%にして親要素に合わせる */
+    max-width: 100%;
+    /* 最大幅を100%にする */
 }

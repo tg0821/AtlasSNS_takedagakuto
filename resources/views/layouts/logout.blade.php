@@ -9,6 +9,7 @@
 
         <title></title>
 
+        <!-- cssのリンク先情報、下にかけてCSSの適用レベルが強くなる。つまり一番強いのはlogout.css -->
         <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/logout.css') }} ">
@@ -24,8 +25,8 @@
     </head>
     <body>
         <header>
-            <h1><img src="images/atlas.png"></h1>
-            <p>Social Network Service</p>
+            <h1><a href="login"><img src="images/atlas.png" class="logo-image"></a></h1>
+            <h2><p class="top">Social Network Service</p></h2>
         </header>
         <div id="container">
             {{ $slot }}

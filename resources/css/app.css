@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Tailwindを使うことによってHTMLで編集可能になった */

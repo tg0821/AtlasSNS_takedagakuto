@@ -181,4 +181,12 @@ return [
 
     'attributes' => [],
 
+    'required' => ':attribute は必須です。',
+    'string' => ':attribute は文字列である必要があります。',
+    'min' => [
+        'string' => ':attribute は :min 文字以上でなければなりません。',
+    ],
+    'max' => [
+        'string' => ':attribute は :max 文字以下でなければなりません。',
+    ],
 ];

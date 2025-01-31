@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 class FollowsController extends Controller
 {
     //
-    public function followList(){
-        return view('follows.followList');
+    public function follow($user){
+         if (auth()->id() === $user) {
+            return back()->with('error', '自分をフォローすることはできません。');
+        }
+
+        auth()->user()->follow($user);
+        return back()->with('success', 'フォローしました！');
+        // return view('follows.followList');
     }
-    public function followerList(){
-        return view('follows.followerList');
+    public function unfollow($user){
+        // return view('follows.followerList');
+        auth()->user()->unfollow($user);
+        return back()->with('success', 'フォロー解除しました！');
     }
 }

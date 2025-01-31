@@ -1,10 +1,10 @@
 <x-logout-layout>
     <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '〇〇']) !!}
+{!! Form::open(['url' => 'register']) !!}
 
 <h2>新規ユーザー登録</h2>
 
-{{ Form::label('ユーザー名') }}
+{{ Form::label('username','ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}
 
 {{ Form::label('メールアドレス') }}
@@ -22,5 +22,15 @@
 
 {!! Form::close() !!}
 
+<!-- これを入れると必須項目が書かれてなかったとき、エラーコードが出る（英語ver） -->
+@if($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+    @endif
 
 </x-logout-layout>
