@@ -2,7 +2,12 @@
 
 <!-- ここで投稿フォーム編集　バリデーションはPostsController.phpで編集 -->
  {{ Form::open(['url' => '/post/create']) }}
- <img src="{{ asset('images/icon1.png') }}">
+ <!-- ログインしているユーザーのアイコン -->
+ @if (Auth::user()->icon_image)
+    <img src="{{ asset('images/' . Auth::user()->icon_image) }}" alt="User Icon" />
+@else
+    <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" />
+@endif
   <!-- placeholderでテキストボックスの中に必要な情報をいれることができる。今回は投稿内容を入力してくださいとうテキスト -->
   {{ Form::text('post',null,['class' => 'posts-box','placeholder' => '投稿内容を入力してください']) }}
   <button id="bottom"><img src="{{ asset('images/post.png') }}"></button>

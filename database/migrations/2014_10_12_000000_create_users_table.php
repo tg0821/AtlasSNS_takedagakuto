@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 255);
             $table->string('email', 255)->unique(); // 一意制約
             $table->string('password', 255);
-            $table->string('bio', 400)->nullable();
+            $table->string('bio', 150)->nullable();
             $table->string('icon_image', 255)->default('icon1.png');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));

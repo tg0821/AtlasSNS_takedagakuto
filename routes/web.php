@@ -45,11 +45,11 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
 // 認証が必要なルート
-Route::middleware(['auth.check'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('top', [PostsController::class, 'index'])->name('top');
     Route::get('profile', [ProfileController::class, 'profile']);
     // プロフィール編集のルート新規追加
-    Route::put('profile-update',[ProfileController::class,'update'])->name('profile.update');
+    Route::post('profile-update',[ProfileController::class,'update'])->name('profile.update');
     Route::get('search', [UsersController::class, 'search'])->name('search');
     Route::get('/follow-list', [PostsController::class, 'followlist']);
     Route::get('/follower-list', [PostsController::class, 'followers']);

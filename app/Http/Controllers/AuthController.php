@@ -54,7 +54,7 @@ public function register(Request $request)
         // dd($request);
         // バリデーション
         $validatedData = $request->validate([
-            'username' => 'required|string|min:2|max:12|unique:users,username',  // ユーザー名: 必須、2～12文字、ユニーク
+            'username' => 'required|string|min:2|max:12|',  // ユーザー名: 必須、2～12文字、ユニーク
             'email' => 'required|email|min:5|max:40|unique:users,email',  // メールアドレス: 必須、5～40文字、ユニーク
             'password' => 'required|string|min:8|max:20|confirmed',  // パスワード: 必須、8文字以上、確認用パスワード
         ]);

@@ -4,7 +4,7 @@
                 <div id="user-info">
                     <p>{{ Auth::user()->username }}さん</p>
                 </div>
-                <button id="menu-toggle" aria-expanded="false">▼</button>
+                <button id="menu-toggle" aria-expanded="false">∨</button>
                 <ul id="accordion-menu" class="hidden">
                     <li><a href="{{ url('top') }}">ホーム</a></li>
                     <li><a href="{{ url('profile') }}">プロフィール</a></li>
