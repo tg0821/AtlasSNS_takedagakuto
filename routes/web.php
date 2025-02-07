@@ -44,6 +44,9 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
+Route::get('/added', function () {
+    return view('auth.added');
+})->name('added');
 // 認証が必要なルート
 Route::middleware(['auth'])->group(function () {
     Route::get('top', [PostsController::class, 'index'])->name('top');
@@ -55,13 +58,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/follower-list', [PostsController::class, 'followers']);
     //投稿機能のためのルート
     Route::post('/post/create',[PostsController::class,'postcreates']);
+    // 投稿の更新のルート
+    Route::put('/posts/update/{id}', [PostsController::class, 'update'])->name('posts.update');
 
-// 削除機能のためのルート
-    Route::get('/post/delete',[PostsController::class,'delete']);
+    // 削除機能のためのルート
+    Route::delete('/post/delete',[PostsController::class,'delete']);
 
-// フォロー、フォロー解除のルート
+    // フォロー、フォロー解除のルート
     Route::post('/follow/{user}', [FollowsController::class, 'follow'])->name('follow');
     Route::delete('/unfollow/{user}', [FollowsController::class, 'unfollow'])->name('unfollow');
+
+    // 相手のプロフィールに飛んでくルート
+    Route::get('/user/{id}',[ProfileController::class,'show'])->name('user.profile');
 });
 
 // ログアウト機能追加

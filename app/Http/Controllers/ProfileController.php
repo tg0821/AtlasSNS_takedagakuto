@@ -12,6 +12,8 @@ use Illuminate\Support\Facades;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash; //これ追加
 use Illuminate\Support\Str;  // Str クラスをインポート
+use App\Models\User; // User モデルをインポート
+
 
 class ProfileController extends Controller
 {   //プロフィール編集画面に行くためのメソッド
@@ -51,8 +53,12 @@ class ProfileController extends Controller
         $extension = $request->file('icon')->getClientOriginalExtension();
         // ユニークなファイル名を生成
         $fileName = Str::random(10) . '.' . $extension;
+        // 'storage/app/public/images/' に保存
         $iconPath = $request->file('icon')->storeAs('images',$fileName, 'public');
-        $user->icon_image = $fileName;
+        // 'public/images' フォルダ内でファイルを保存
+        // $request->file('icon')->move(public_path('images'), $fileName);
+        // データベースのアイコン名を更新
+        $user->icon_image =  basename($iconPath);
     }
 
     $user->update(['username' => $request->username,
@@ -63,4 +69,21 @@ class ProfileController extends Controller
     // return redirect()->route('profile')->with('success', 'プロフィールを更新しました');
     return redirect()->route('top');
 }
+// 相手ユーザープロフィール表示
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        $authUser = Auth::user();
+        if ($authUser) {
+        $isFollowing = $authUser->following()->where('following_id', $id)->exists();
+          if (!$isFollowing) {
+          // フォローしていない場合の処理
+          // 例えば「フォローしませんか？」のメッセージを表示したいなら
+          $followSuggestion = "このユーザーをフォローしてみませんか？";
+          }
+          } else {
+            $isFollowing = false;
+}
+        return view('profiles.user-profile', compact('user', 'isFollowing'));
+    }
 }

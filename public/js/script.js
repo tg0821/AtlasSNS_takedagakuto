@@ -23,4 +23,41 @@ document.addEventListener("DOMContentLoaded", () => {
       accordionMenu.classList.remove("visible");
     }
   });
+
+  $(document).ready(function () {
+    $('.js-modal-button').on('click', function () {
+      var postId = $(this).data('id');
+      var postContent = $(this).data('text');
+
+      $('#edit_post').val(postContent);
+      $('#post_id').val(postId);
+      $('#editForm').attr('action', '/posts/update/' + postId); // ここで正しいURLを設定
+      $('#editModal').show();
+    });
+
+    $('#editForm').on('submit', function (event) {
+      event.preventDefault();
+
+      var form = $(this);
+      var url = form.attr('action');
+
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: form.serialize(),
+        success: function () {
+          alert('更新しました！');
+          location.href = "/top"; // 更新後、topへ戻る
+        },
+        error: function () {
+          alert('更新に失敗しました。');
+        }
+      });
+    });
+
+    $('.close').on('click', function () {
+      $('#editModal').hide();
+    });
+  });
+
 });

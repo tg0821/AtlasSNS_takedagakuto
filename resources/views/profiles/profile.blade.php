@@ -2,10 +2,11 @@
 
 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
- @if (Auth::user()->icon_image)
-    <img src="{{ asset('images/' . Auth::user()->icon_image) }}" alt="User Icon" />
+        <!-- ログインしているユーザーのアイコン表示 -->
+ @if (Auth::user()->icon_image!="icon1.png")
+    <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="User Icon" />
 @else
-    <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" />
+    <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" />
 @endif
         <div>
             <label for="username">ユーザー名</label>
@@ -39,9 +40,9 @@
         <div>
             <label for="icon">アイコン画像</label>
             <input type="file" name="icon" id="icon" accept="image/*">
-            @if(Auth::user()->icon)
+            <!-- @if(Auth::user()->icon)
                 <img src="{{ asset('storage/images/' . Auth::user()->icon) }}" alt="現在のアイコン" width="100">
-            @endif
+            @endif -->
         </div>
 
         <button type="submit">更新</button>

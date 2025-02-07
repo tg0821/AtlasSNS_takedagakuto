@@ -11,10 +11,10 @@
 {{ Form::email('email',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+{{ Form::password('password',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+{{ Form::password('password_confirmation',null,['class' => 'input']) }}
 
 {{ Form::submit('新規登録') }}
 

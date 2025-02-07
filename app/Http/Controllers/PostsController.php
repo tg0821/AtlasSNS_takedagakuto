@@ -66,4 +66,52 @@ public function followlist(){
     // ビューにデータを渡して表示
     return view('follows.followerList', compact('followerUsers','posts'));
  }
+
+ public function update(Request $request, $id)
+{
+    // $post = Post::findOrFail($id);
+    // $post->content = $request->post;
+    // $post->save();
+
+    // return redirect()->back()->with('success', '投稿を更新しました');
+    $request->validate([
+        'post' => 'required|string|max:150'
+    ]);
+
+    $post = Post::findOrFail($id);
+
+    // 自分の投稿かどうか確認
+    if (Auth::id() !== $post->user_id) {
+        return response()->json(['success' => false, 'message' => '権限がありません。']);
+    }
+
+    $post->post = $request->post;
+    $post->save();
+
+    // return response()->json(['success' => true, 'message' => '更新しました。']);
+    // 更新後、`/top`ページにリダイレクト
+    return redirect('/top')->with('success', '投稿が更新されました');
+}
+
+public function delete(Request $request)
+{
+    // リクエストからpost_idを取得
+    $post = Post::findOrFail($request->post_id);
+
+    // 自分の投稿かどうかを確認
+    if (Auth::id() !== $post->user_id) {
+        return redirect()->back()->with('error', '削除する権限がありません。');
+    }
+
+    // 投稿を削除
+    $post->delete();
+
+    // 削除後、トップページへリダイレクト
+    return redirect('/top')->with('success', '投稿を削除しました。');
+}
+
+
+
+
+
 }

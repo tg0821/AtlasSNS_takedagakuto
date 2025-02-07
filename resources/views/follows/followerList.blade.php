@@ -9,12 +9,13 @@
         <ul class="list-group">
             @foreach($followerUsers as $user)
             <li class="list-group-item d-flex align-items-center">
-                    <!-- ユーザーアイコン -->
-                    <img src="{{ asset('images/icon1.png') }}"
-                         alt="ユーザーアイコン"
-                         class="rounded-circle"
-                         style="width: 40px; height: 40px; margin-right: 10px;">
-
+                <a href="{{ route('user.profile', ['id' => $user->id]) }}">
+                @if ($user->icon_image!="icon1.png")
+                <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" />
+                @else
+                <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" />
+                @endif
+                </a>
                     <!-- ユーザー名 -->
                     <span>{{ $user->username }}</span>
               </li>

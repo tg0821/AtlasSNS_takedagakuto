@@ -75,6 +75,6 @@ public function register(Request $request)
         // ユーザー登録後にログイン
         Auth::login($user);
 
-        return redirect('login');  // 登録後、ダッシュボードへリダイレクト
+        return view('auth.added');  // 登録後、ダッシュボードへリダイレクト
     }
 }
