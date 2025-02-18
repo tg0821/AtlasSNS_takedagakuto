@@ -6,7 +6,7 @@
  @if (Auth::user()->icon_image!="icon1.png")
     <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="User Icon" />
 @else
-    <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" />
+    <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="user-name" />
 @endif
         <div>
             <label for="username">ユーザー名</label>

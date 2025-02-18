@@ -14,13 +14,10 @@ class PostsController extends Controller
 {
     // ログインユーザーを取得
     $user = Auth::user();
-
     // // フォロー数とフォロワー数を取得
     // followCount = $user->following()->count();
     // followerCount = $user->followers()->count();
     // dd($followCount,$followerCount);
-
-
     if (request()->has('all')) {
         $posts = Post::latest()->get(); // 全ての投稿を取得
     } else {

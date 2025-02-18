@@ -13,6 +13,13 @@ header {
 /* 基本スタイル */
 #menu-container {
     position: relative;
+    color: white;
+    display: flex;
+}
+
+.user-name {
+
+    font-weight: bold;
 }
 
 #menu-toggle {
@@ -32,14 +39,13 @@ header {
 #accordion-menu {
     list-style: none;
     padding: 0;
-    margin: 10px 0 0;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     position: absolute;
     right: 0;
     top: 100%;
-    min-width: 150px;
+    min-width: 180px;
     /* display: none; */
     z-index: 10;
 }
@@ -81,11 +87,13 @@ header {
 
 #container {
     flex: 0 0 80%;
+    background-color: white;
 }
 
 #side-bar {
-    flex: 0 0 19%;
+    flex: 0 0 20%;
     border-left: 1px solid #727272;
+    background-color: white;
 }
 
 /* 投稿、削除のボタンのCS */
@@ -122,4 +130,40 @@ header {
     /* 幅を100%にして親要素に合わせる */
     max-width: 100%;
     /* 最大幅を100%にする */
+    height: 100px;
+}
+
+.post-container {
+    display: flex;
+    height: 100px;
+}
+
+
+#user-info {
+    color: white;
+}
+
+#head {
+    display: flex;
+}
+
+/* Atlasのロゴマークを小さくする */
+#head img {
+    width: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#head .user-icon {
+    width: 50px;
+
+}
+
+.post {
+    display: flex;
+}
+
+.user-icon {
+    width: 50px;
+    height: 50px;
 }

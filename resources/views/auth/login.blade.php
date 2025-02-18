@@ -6,13 +6,11 @@
   <!-- 括弧の中の引数３番のものはclass名になっている -->
    <div class="form-group">
   {{ Form::label('メールアドレス') }}
-  <br>
   {{ Form::text('email',null,['class' => 'input']) }}
   </div>
 
   <div class="form-group">
   {{ Form::label('パスワード') }}
-  <br>
   {{ Form::password('password',['class' => 'input']) }}
   </div>
 

@@ -211,6 +211,7 @@ input[type=submit] {
     padding-right: 30px;
     display: block;
     margin: 0 0 0 auto;
+    font-size: 17px;
 }
 
 button[disabled],
@@ -1458,6 +1459,8 @@ a {
     text-decoration: none;
     text-align: center;
     /* margin-top: 40px; */
+    font-size: 13px;
+
 }
 
 a:focus,
@@ -1629,7 +1632,8 @@ h1 {
 
 .h2,
 h2 {
-    font-size: 30px
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .h3,
@@ -1653,13 +1657,84 @@ h6 {
 }
 
 p {
-    margin: 0 0 11px;
+    margin: 0 0 20px;
     text-align: center;
-    font-weight: 900;
+    font-size: 16px;
 }
 
+/* 新規ユーザー登録はこちらの文字に対してのレイアウト */
 .register-link {
-    margin-top: 40px;
+    margin-top: 25px;
+}
+
+.register-link a {
+    color: white;
+    /* 文字色を白に */
+    text-decoration: none;
+    /* デフォルトの下線を削除 */
+    border-bottom: 1px solid white;
+    /* 下ボーダーを白色にする */
+    padding-bottom: 2px;
+    /* ボーダーとテキストの間に少し余白を追加（調整可） */
+    font-weight: 300;
+}
+
+/* ログイン画面に戻るの文字に対してのレイアウト */
+.login-rink {
+    margin-top: 25px;
+}
+
+.login-rink a {
+    color: white;
+    /* 文字色を白に */
+    text-decoration: none;
+    /* デフォルトの下線を削除 */
+    border-bottom: 1px solid white;
+    /* 下ボーダーを白色にする */
+    padding-bottom: 2px;
+    /* ボーダーとテキストの間に少し余白を追加（調整可） */
+    font-weight: 300;
+}
+
+/* 新規登録できた後のレイアウト */
+.logined {
+    margin: 0px;
+    font-weight: 600;
+}
+
+.welcome {
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.complete {
+    margin: 0px;
+}
+
+.early {
+    font-size: 16px;
+}
+
+.btn a {
+    -webkit-appearance: button;
+    cursor: pointer;
+    color: white;
+    background-color: #ed3a50;
+    border-radius: 8px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    margin: 0 0 0 auto;
+    font-size: 17px;
+}
+
+/* Atlasのロゴマークを小さくする */
+#head img {
+    width: 100px;
+    /* 幅を100pxに設定 */
 }
 
 .lead {
@@ -3305,8 +3380,9 @@ legend {
 }
 
 label {
-    display: inline-block;
+    display: block;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 .form-group {
@@ -3321,6 +3397,7 @@ label {
     /* ラベルを独立して表示 */
     margin-bottom: 5px;
     /* ラベルと入力欄の間隔 */
+    font-weight: 300;
 }
 
 .form-group .input {
@@ -8073,6 +8150,7 @@ header {
 /* Social Network Serviceのフォントの太さを指定 */
 .top {
     font-weight: 900;
+    font-size: 30px;
 }
 
 #container {
@@ -8094,7 +8172,7 @@ header {
     /* テキストを中央揃え */
     position: absolute;
     /* 絶対配置 */
-    top: 57%;
+    top: 67%;
     /* 画面の垂直中央 */
     left: 50%;
     /* 画面の水平中央 */
