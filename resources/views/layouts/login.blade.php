@@ -36,28 +36,28 @@
     </div>
     <div id="side-bar">
       <div id="confirm">
-        <p>{{ Auth::user()->username }}さんの</p>
-        <div>
+        <p class=user-name-info>{{ Auth::user()->username }}さんの</p>
+        <div class=follower>
           <p>フォロー数</p>
-          <p>{{ Auth::user()->following()->count(); }}名</p>
+          <p class="pepole">{{ Auth::user()->following()->count(); }}人</p>
         </div>
         <!-- web.phpのrouteの中のフォローリストとフォロワーリストのリンクを持ってきている -->
         <p class="btn"><a href="{{ url('/follow-list') }}">フォローリスト</a></p>
-        <div>
+        <div class=followers>
           <p>フォロワー数</p>
-          <p>{{ Auth::user()->followers()->count(); }}名</p>
+          <p class="followers">{{ Auth::user()->followers()->count(); }}人</p>
         </div>
-        <p class="btn"><a href="{{ url('/follower-list') }}">フォロワーリスト</a></p>
+        <p class="btn follower-btn"><a href="{{ url('/follower-list') }}">フォロワーリスト</a></p>
       </div>
       <!-- web.phpのrouteの中の検索機能（search)を持ってくる -->
-      <p class="btn"><a href="{{ url('search') }}">ユーザー検索</a></p>
+      <p class="btn serch-btn"><a href="{{ url('search') }}">ユーザー検索</a></p>
     </div>
   </div>
   <footer>
   </footer>
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="JavaScriptファイルのURL"></script>
-  <script src="JavaScriptファイルのURL"></script>
+  <!-- <script src="JavaScriptファイルのURL"></script>
+  <script src="JavaScriptファイルのURL"></script> -->
 </body>
 
 </html>

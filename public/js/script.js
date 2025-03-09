@@ -60,4 +60,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+
+  // document.addEventListener('DOMContentLoaded', function () {
+  // 削除ボタンのクリックイベント
+  document.querySelectorAll('.btn-delete').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault(); // デフォルト動作を防ぐ
+
+      // どの投稿の削除ボタンかを識別
+      const postId = this.getAttribute('data-post-id');
+      console.log('削除ボタンがクリックされました。postId:', postId); // デバッグ用ログ
+
+      // 対応するモーダルを取得
+      const modal = document.getElementById(`deleteModal-${postId}`);
+      if (modal) {
+        console.log('モーダルが見つかりました。'); // デバッグ用ログ
+        modal.style.display = 'block';  // モーダルを表示
+      } else {
+        console.error(`deleteModal-${postId} が見つかりません`);
+      }
+    });
+  });
+
+  // 確認ボタンのクリックイベント
+  document.querySelectorAll('.confirmDelete').forEach(button => {
+    button.addEventListener('click', function () {
+      const postId = this.getAttribute('data-post-id');
+      console.log('OKボタンがクリックされました。postId:', postId); // デバッグ用ログ
+
+      const form = document.getElementById(`deleteForm-${postId}`);
+      if (form) {
+        form.submit(); // フォーム送信
+      } else {
+        console.error(`deleteForm-${post} が見つかりません`);
+      }
+    });
+  });
+
+  // キャンセルボタンのクリックイベント
+  document.querySelectorAll('.cancelDelete').forEach(button => {
+    button.addEventListener('click', function () {
+      const postId = this.getAttribute('data-post-id');
+      const modal = document.getElementById(`deleteModal-${postId}`);
+      if (modal) {
+        modal.style.display = 'none'; // モーダルを閉じる
+      }
+    });
+  });
+
+  // モーダル外をクリックしたら閉じる
+  window.addEventListener('click', function (e) {
+    document.querySelectorAll('.modal').forEach(modal => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+  // });
+
 });

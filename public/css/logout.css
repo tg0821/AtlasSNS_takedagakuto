@@ -8178,6 +8178,7 @@ header {
     /* 画面の水平中央 */
     transform: translate(-50%, -50%);
     /* 中央に移動 */
+    height: 500px;
 }
 
 #input {

@@ -1,43 +1,45 @@
 <x-login-layout>
 
-  <h2>機能を実装していきましょう。</h2>
     @if($followingUsers->isEmpty())
         <p>フォローしているユーザーはいません。</p>
     @else
         <ul class="list-group">
+            <li class="list-summary">フォローリスト</li>
             @foreach($followingUsers as $user)
                 <li class="list-group-item d-flex align-items-center">
-                    <!-- ユーザーアイコン -->
-                    <!-- <img src="{{ asset('images/icon1.png') }}"
-                         alt="ユーザーアイコン"
-                         class="rounded-circle"
-                         style="width: 40px; height: 40px; margin-right: 10px;"> -->
-<!-- 11~14をフォローしているユーザーがプロフィール編集した後もいろんな画像になるように変更 -->
-            <!-- <img src="{{ asset('storage/images/' . $user->icon_image) }}"
-                 alt="ユーザーアイコン"
-                 class="rounded-circle"
-                 style="width: 40px; height: 40px; margin-right: 10px;"> -->
-                 <a href="{{ route('user.profile', ['id' => $user->id]) }}">
-                 @if ($user->icon_image!="icon1.png")
-                 <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" />
-                 @else
-                 <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" />
-                 @endif
-                 </a>
-            <!-- ユーザー名などの他の情報 -->
-                    <!-- ユーザー名 -->
-                    <span>{{ $user->username }}</span>
+                    <a href="{{ route('user.profile', ['id' => $user->id]) }}">
+                        @if ($user->icon_image != "icon1.png")
+                            <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" class="follower-user"/>
+                        @else
+                            <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="follower-user"/>
+                        @endif
+                    </a>
                 </li>
             @endforeach
-            </ul>
-            @if($posts->isEmpty())
+        </ul>
+    @endif
+
+    @if($posts->isEmpty())
         <p>投稿はありません。</p>
     @else
-        @foreach($posts as $post)
+        @foreach($posts->sortByDesc('created_at') as $post) <!-- created_atを基準に降順に並べ替え -->
             <div class="post">
-                <p>{{ $post->post }}</p> <!-- 投稿内容 -->
+                <!-- 投稿者のアイコンを表示 -->
+                <a href="{{ route('user.profile', ['id' => $post->user->id]) }}">
+                    @if ($post->user->icon_image != "icon1.png")
+                        <img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="User Icon" class="post-user-icon"/>
+                    @else
+                        <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="post-user-icon"/>
+                    @endif
+                </a>
+                <div class="post-box">
+                    <p class="post-name">{{ $post->user->username }}</p>
+                    <!-- 投稿内容 -->
+                    <p class="post-containers" id="post-text-{{ $post->id }}">{{ $post->post }}</p>
+                </div>
+                <p class="post-time">{{ $post->created_at->format('Y-m-d H:i') }}</p>
             </div>
         @endforeach
     @endif
-    @endif
+
 </x-login-layout>

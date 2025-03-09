@@ -10,44 +10,46 @@
                 class="form-control"
                 placeholder="ユーザー名"
                 value="{{ request('query') }}">
-        </div>
-        <div class="form-group mt-2">
-            <button type="submit" class="btn btn-primary"><img src="{{ asset('images/search.png') }}"></button>
+
+         <div class="serch-group">
+            <button type="submit" class="serch-bottom">
+                <img src="{{ asset('images/search.png') }}" class="serch-picture">
+            </button>
             <!-- 検索ワードがある場合は隣に表示 -->
             @if(request('query'))
-                <span class="ml-2">検索ワード: {{ request('query') }}</span>
+                <div class="ml-2">検索ワード: {{ request('query') }}</div>
             @endif
+         </div>
         </div>
     </form>
 
     <!-- 検索結果 -->
-    <h2 class="mt-4">検索結果</h2>
     @if($users->isEmpty())
         <p>該当するユーザーが見つかりませんでした。</p>
     @else
-        <ul class="list-group">
+        <ul class="serch-list">
             @foreach($users as $user)
-                <li class="list-group-item d-flex align-items-center">
+                <li class="serch-list-group">
             <a href="{{ route('user.profile', ['id' => $user->id]) }}">
             @if ($user->icon_image!="icon1.png")
-            <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" />
+            <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon"class="serch-icon"/>
             @else
-            <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" />
+            <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="serch-icon"/>
             @endif
             </a>
             <!-- ユーザー名 -->
-            <span>{{ $user->username }}</span>
+            <span class="serch-name">{{ $user->username }}</span>
             <!-- フォロー/フォロー解除ボタン -->
             @if(auth()->user()->following->contains($user))
             <form action="{{ route('unfollow', $user) }}" method="POST" class="ml-auto">
             @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">フォロー解除</button>
+                    <button type="submit" class="delete-follow">フォロー解除</button>
                 </form>
             @else
                 <form action="{{ route('follow', $user) }}" method="POST" class="ml-auto">
                     @csrf
-                    <button type="submit" class="btn btn-primary btn-sm">フォロー</button>
+                    <button type="submit" class="come-follow">フォローする</button>
                 </form>
             @endif
                 </li>

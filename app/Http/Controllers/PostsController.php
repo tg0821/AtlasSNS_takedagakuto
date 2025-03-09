@@ -10,21 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
 
-    public function index()
+public function index()
 {
-    // ログインユーザーを取得
     $user = Auth::user();
-    // // フォロー数とフォロワー数を取得
-    // followCount = $user->following()->count();
-    // followerCount = $user->followers()->count();
-    // dd($followCount,$followerCount);
-    if (request()->has('all')) {
-        $posts = Post::latest()->get(); // 全ての投稿を取得
-    } else {
-        $posts = Post::where('user_id', Auth::id())->latest()->get(); // 自分の投稿のみ
-    };
+
+    // 自分とフォローしているユーザーの投稿をすべて取得（最新順）
+    $posts = Post::whereIn('user_id', $user->following->pluck('id')->push($user->id))
+        ->orderBy('created_at', 'desc') // 投稿時間の降順
+        ->get();
+
     return view('posts.index', compact('posts'));
 }
+
 
 
     // post機能のバリデーション
