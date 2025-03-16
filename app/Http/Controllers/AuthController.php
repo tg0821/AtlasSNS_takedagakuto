@@ -28,9 +28,13 @@ class AuthController extends Controller
     {
         // 入力されたデータを検証
         $credentials = $request->validate([
-
             'email' => 'required|email',
             'password' => 'required|string',
+        ],[
+    'email.required' => 'メールアドレスは必須です。',
+    'email.email' => 'メールアドレスの形式が正しくありません。',
+    'password.required' => 'パスワードは必須です。',
+    'password.string' => 'パスワードは文字列で入力してください。',
         ]);
 
         // 認証処理
@@ -41,7 +45,9 @@ class AuthController extends Controller
 
         // 認証失敗
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => 'メールアドレスの形式が正しくありません。',
+
         ]);
     }
     public function showRegistrationForm()
@@ -57,7 +63,8 @@ public function register(Request $request)
             'username' => 'required|string|min:2|max:12|',  // ユーザー名: 必須、2～12文字、ユニーク
             'email' => 'required|email|min:5|max:40|unique:users,email',  // メールアドレス: 必須、5～40文字、ユニーク
             'password' => 'required|string|min:8|max:20|confirmed',  // パスワード: 必須、8文字以上、確認用パスワード
-        ]);
+        ]
+    );
 
         // ユーザー作成
         $user = User::create([

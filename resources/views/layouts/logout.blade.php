@@ -31,6 +31,15 @@
         <div id="container">
             {{ $slot }}
         </div>
+        @if($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+    @endif
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="JavaScriptファイルのURL"></script>
         <script src="JavaScriptファイルのURL"></script>
