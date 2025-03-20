@@ -34,7 +34,7 @@
             @if ($user->icon_image!="icon1.png")
             <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon"class="serch-icon"/>
             @else
-            <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="serch-icon"/>
+            <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class="serch-icon"/>
             @endif
             </a>
             <!-- ユーザー名 -->

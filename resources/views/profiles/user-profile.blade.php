@@ -5,7 +5,7 @@
         @if ($user->icon_image!="icon1.png")
         <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" class="user-prof" />
         @else
-        <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="user-prof"/>
+        <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class="user-prof"/>
         @endif
         <div class="follows-info">
             <div class="follows-name">
@@ -38,7 +38,7 @@
             @if($post->user->icon_image && $post->user->icon_image != "icon1.png")
                 <img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="{{ $post->user->name }}のアイコン" class="post-user-icon">
             @else
-                <img src="{{ asset('storage/icon1.png') }}" alt="デフォルトアイコン" class="post-user-icon">
+                <img src="{{ asset('images/icon1.png') }}" alt="デフォルトアイコン" class="post-user-icon">
             @endif
 
             <!-- 投稿内容 -->

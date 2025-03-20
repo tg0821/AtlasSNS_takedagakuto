@@ -1,7 +1,7 @@
 <x-logout-layout>
   <!-- 適切なURLを入力してください -->
   {!! Form::open(['url' => 'login']) !!}
-  <p>AtlasSNSへようこそ</p>
+  <h2>AtlasSNSへようこそ</h2>
 
   <!-- 括弧の中の引数３番のものはclass名になっている -->
    <div class="form-group">

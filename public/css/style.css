@@ -193,7 +193,7 @@ header {
     padding-top: 50px;
     padding-bottom: 90px;
     padding-left: 0px;
-    padding-right: 257px;
+    /* padding-right: 257px; */
     box-sizing: border-box;
     /* これを追加 */
     width: 65%;
@@ -237,6 +237,8 @@ header {
 .post {
     display: flex;
     border-bottom: groove;
+    align-items: flex-start;
+    /* 子要素の高さを自動調整 */
 }
 
 .user-post {
@@ -391,11 +393,27 @@ header {
 
 .post-containers {
     width: 75%;
+    height: 63px;
+    min-height: 63px;
+    height: auto;
+    /* 高さを自動調整 */
+    height: auto;
+    /* コンテンツの高さに応じて自動調整 */
+    white-space: pre-wrap;
+    /* 改行をそのまま表示 */
+    word-wrap: break-word;
+    /* 長い単語を折り返し */
+}
+
+#text {
+    height: 30px;
+    width: 75%;
 }
 
 .post-box {
-    width: 75%;
-    height: 90px;
+    /* width: 75%;
+    height: 90px; */
+    flex-grow: 1;
 }
 
 .post-user-icon {
@@ -791,6 +809,6 @@ header {
     border: none;
     background-color: white;
     position: absolute;
-    top: 232px;
+    top: 250px;
     left: 45%;
 }

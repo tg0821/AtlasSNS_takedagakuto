@@ -6327,10 +6327,8 @@ a.thumbnail:hover {
     color: #a94442;
     width: 340px;
     text-align: center;
-    position: absolute;
-    /* justify-content: center; */
-    top: 60px;
-    right: 550px;
+    margin-left: 115px;
+    margin-top: 39%;
 }
 
 .alert-danger hr {
@@ -8167,6 +8165,8 @@ header {
     margin: 0 auto;
     /* 画面中央に配置 (横方向) */
     padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     /* 内側の余白 */
     background-color: rgba(0, 0, 0, 0.2);
     /* 薄いグレーの背景色 */

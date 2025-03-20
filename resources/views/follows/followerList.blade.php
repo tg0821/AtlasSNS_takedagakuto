@@ -10,7 +10,7 @@
                 @if ($user->icon_image != "icon1.png")
                 <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="User Icon" class="follower-user"/>
                 @else
-                <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="follower-user"/>
+                <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class="follower-user"/>
                 @endif
                 </a>
               </li>
@@ -28,7 +28,7 @@
                 @if ($post->user->icon_image != "icon1.png")
                     <img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="User Icon" class="post-user-icon"/>
                 @else
-                    <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="post-user-icon"/>
+                    <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class="post-user-icon"/>
                 @endif
             </a>
             <div class="post-box">

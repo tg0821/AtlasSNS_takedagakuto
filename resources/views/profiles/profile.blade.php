@@ -8,7 +8,7 @@
         @if (Auth::user()->icon_image != "icon1.png")
             <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="User Icon" class="prof-icon"/>
         @else
-            <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class="prof-icon"/>
+            <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class="prof-icon"/>
         @endif
 
     <!-- 入力フォーム -->

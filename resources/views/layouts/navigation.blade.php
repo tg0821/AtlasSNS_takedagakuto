@@ -9,7 +9,7 @@
                 @if (Auth::user()->icon_image!="icon1.png")
                 <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="User Icon" class="user-icon"/>
                 @else
-                <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class ="user-icon"/>
+                <img src="{{ asset('images/icon1.png') }}" alt="Default Icon" class ="user-icon"/>
                 @endif
                 <ul id="accordion-menu" class="hidden">
                     <li class="top"><a href="{{ url('top') }}">HOME</a></li>

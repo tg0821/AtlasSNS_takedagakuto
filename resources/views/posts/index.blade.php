@@ -10,7 +10,7 @@
 <img src="{{ asset('storage/icon1.png') }}" alt="Default Icon" class ="user-icon"/>
 @endif
   <!-- placeholderでテキストボックスの中に必要な情報をいれることができる。今回は投稿内容を入力してくださいとうテキスト -->
-  {{ Form::text('post',null,['class' => 'posts-box','placeholder' => '投稿内容を入力してください']) }}
+  {{ Form::textarea('post',null,['class' => 'posts-box','placeholder' => '投稿内容を入力してください']) }}
   <button id="bottom"><img src="{{ asset('images/post.png') }}" class="post-bottom"></button>
   {{ Form::close() }}
 </div>
@@ -32,13 +32,13 @@
     @if ($post->user->icon_image && $post->user->icon_image != "icon1.png")
         <img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="{{ $post->user->name }}のアイコン" class="post-user-icon">
     @else
-        <img src="{{ asset('storage/icon1.png') }}" alt="デフォルトアイコン" class="post-user-icon">
+        <img src="{{ asset('images/icon1.png') }}" alt="デフォルトアイコン" class="post-user-icon">
     @endif
     </a>
             <div class="post-box">
             <p class="post-name" >{{$post->user->username}}</p>
             <!-- 投稿内容 -->
-            <p class="post-containers" id="post-text-{{ $post->id }}">{{ $post->post }}</p>
+            <p class="post-containers" id="post-text-{{ $post->id }}">{!! nl2br(e($post->post)) !!}</p>
             </div>
             <div class="post-list">
               <p class="post-time">{{ $post->created_at->format('Y-m-d H:i') }}</p>
