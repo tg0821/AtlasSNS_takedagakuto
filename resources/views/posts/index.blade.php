@@ -42,6 +42,7 @@
             </div>
             <div class="post-list">
               <p class="post-time">{{ $post->created_at->format('Y-m-d H:i') }}</p>
+
               <!-- 自分の投稿のみ、編集・削除ボタンを表示 -->
               @if(Auth::check() && Auth::id() == $post->user_id)
                 <div class="post-actions">
@@ -56,7 +57,7 @@
                       {!! Form::open(['url' => '', 'method' => 'POST', 'id' => 'editForm']) !!}
                       {{ Form::hidden('_method', 'PUT') }}
                       {{ Form::hidden('post_id', null, ['id' => 'post_id']) }}
-                      {{ Form::text('post', null, ['id' => 'edit_post', 'class' => 'posts-content']) }}
+                      {{ Form::textarea('post', null, ['id' => 'edit_post', 'class' => 'posts-content']) }}
                         <button type="submit"class="edit">
                           <img src="{{ asset('images/edit.png') }}" class="edit-bottom">
                         </button>

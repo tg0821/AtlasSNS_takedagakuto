@@ -8116,7 +8116,9 @@ button.close {
 }
 
 html {
-    height: 100%;
+    overflow-y: auto;
+    /* 内容がコンテナの高さを超えた場合に縦スクロールを有効に */
+    height: 100vh;
 }
 
 body {
@@ -8133,8 +8135,10 @@ body {
     /* 背景を画面全体に合わせる */
     background-repeat: no-repeat;
     /* 背景を繰り返さない */
-    overflow: hidden;
+    /* overflow: hidden; */
     /* スクロールを無効にする */
+    background-attachment: fixed;
+    /* 背景を固定 */
 }
 
 header {
@@ -8176,14 +8180,9 @@ header {
     /* 影を付けて浮き上がらせる */
     text-align: center;
     /* テキストを中央揃え */
-    position: absolute;
-    /* 絶対配置 */
-    top: 67%;
-    /* 画面の垂直中央 */
-    left: 50%;
-    /* 画面の水平中央 */
-    transform: translate(-50%, -50%);
-    /* 中央に移動 */
+    margin-top: 235px;
+    overflow-y: auto;
+    /* 内容がコンテナの高さを超えた場合に縦スクロールを有効に */
 }
 
 #input {

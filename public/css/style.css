@@ -237,8 +237,13 @@ header {
 .post {
     display: flex;
     border-bottom: groove;
-    align-items: flex-start;
+    align-items: stretch;
+    height: auto;
+    /* 子要素が親要素の高さに合わせて伸びる */
+    /* align-items: flex-start; */
+    /* 子要素（アイコン、投稿内容、ボタン）を同じ高さにする */
     /* 子要素の高さを自動調整 */
+
 }
 
 .user-post {
@@ -388,21 +393,28 @@ header {
 
 .post-actions {
     display: flex;
-    margin-bottom: 15px;
+    margin-top: auto;
+    margin-bottom: 3px;
 }
 
 .post-containers {
-    width: 75%;
-    height: 63px;
+    width: 100%;
     min-height: 63px;
     height: auto;
-    /* 高さを自動調整 */
-    height: auto;
     /* コンテンツの高さに応じて自動調整 */
-    white-space: pre-wrap;
-    /* 改行をそのまま表示 */
+    /* white-space: pre-wrap;
+    改行をそのまま表示 */
     word-wrap: break-word;
     /* 長い単語を折り返し */
+}
+
+.post-list {
+    /* align-self: flex-start; */
+    /* height: 100%; */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-right: 10px;
 }
 
 #text {
@@ -792,19 +804,25 @@ header {
 }
 
 .modal-edit {
-    position: absolute;
-    top: 35%;
-    right: 22%;
     width: 55%;
-    height: 38%;
+    min-height: 30%;
     background-color: white;
     border-radius: 8px;
+    background-position: center;
+    margin-top: 18%;
+    margin-left: 21%;
+    overflow: auto;
+    flex-direction: column;
+    /* 縦並びにする */
+    align-items: center;
+    /* 水平方向の中央揃え */
 }
 
 .posts-content {
-    width: 90%;
+    width: 93%;
+    height: 100px;
     margin-top: 25px;
-    margin-left: 30px;
+    margin-left: 26px;
     margin-right: 30px;
     padding-bottom: 20%;
     padding-left: 10px;
@@ -815,7 +833,19 @@ header {
 .edit {
     border: none;
     background-color: white;
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
     top: 250px;
-    left: 45%;
+    left: 45%; */
+    /* position: absolute; */
+}
+
+#editForm {
+    display: flex;
+    flex-direction: column;
+    /* 縦並びにする */
+    align-items: center;
+    /* 水平方向の中央揃え */
 }
